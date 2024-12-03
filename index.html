@@ -2,130 +2,139 @@
 <html lang="en">
 
 <head>
-  <base href="/">
+  <base href="/" />
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Demonstration for create-playground">
-
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes" />
+  <link rel="preconnect" crossorigin href="https://fonts.googleapis.com" />
+  <meta name="generator" content="HAX" />
+  <title>HAX playground | @haxtheweb/create</title>
+  <meta name="description" content="Playspace to learn about the @haxtheweb/create hax cli and commands." />
+  <meta name="keywords" content="npm, @haxthweb, @haxtheweb/create, hax, haxcms, haxsite, webcomponents, cli, web, lit, haxtheweb, penn state" />
+  <meta property="og:description" content="Free, open source, forever, transformative, unleashing creativity in a sustainable way." />
+  <meta property="og:title" content="HAX The Web" />
+  <meta property="og:site_name" content="HAX The Web" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/icon-512x512.png" />
+  <meta property="og:url" content="https://playground.hax.cloud/" />
+  <link rel="next" href="/login.php" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="robots" content="index, follow" />
+  <meta name="application-name" content="HAX The Web" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="HAX The Web" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="canonical" href="https://playground.hax.cloud/" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#1e407c" />
+  <meta name="msapplication-TileColor" content="#1e407c" />
+  <meta name="msapplication-TileImage" content="assets/mstile-144x144.png" />
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="assets/icon-48x48.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="96x96" href="assets/icon-96x96.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="assets/icon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+  <meta name="theme-color" content="#1e407c" />
+  <link 
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Roboto&family=Press+Start+2P&display=swap"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet';"
+  />  
   <style>
-    :root, html, body {
-      margin: 0;
-      padding: 0;
-    }
-    #demo {
-      margin: var(--ddd-spacing-2);
-    }
-    create-playground {
-      margin: var(--ddd-spacing-2);
-      border: var(--ddd-border-md);
-      border-radius: var(--ddd-radius-lg);
-    }
-    create-playground:hover {
-      box-shadow: var(--ddd-boxShadow-sm);
-    }
-    #example {
-      --create-playground-font-size: var(--ddd-font-size-l);
-      background-color: var(--ddd-accent-2);
-      color: var(--ddd-primary-17);
-    }
-  </style>
-  <title>create-playground</title>
-</head>
-
-<body>
-  <div id="demo">
-    <h1>create-playground</h1>
-    <!-- this is going to do whatever the tag's defaults are -->
-    <h2>Default</h2>
-    <create-playground></create-playground>
-    <h2>Slot usage</h2>
-    <create-playground data-accent="2" data-primary="17"><div>Sample slot content</div></create-playground>
-    <h2>Property usage</h2>
-    <create-playground id="example" title="Sample property title"></create-playground>
-  </div>
-  <script type="module" src="./create-playground.js"></script>
-
-  <!-- Take HAX, the Web and you further down the rabbit hole -->
-  <style>
-    #follow-the-white-rabbit {
-      margin: var(--ddd-spacing-4) auto 64px  16px;
-      background-color: var(--ddd-accent-4);
-      color: black;
-    }
-    #follow-the-white-rabbit[open] summary {
-      background-color: var(--ddd-accent-4) !important;
-      color: black;
-    }
-    #follow-the-white-rabbit[open] .content {
-      padding: 0 var(--ddd-spacing-4);
-    }
-    #follow-the-white-rabbit ul,
-    #follow-the-white-rabbit li {
+    :root,
+    html,
+    body {
       padding: 0;
       margin: 0;
+      font-family: "Roboto", "Franklin Gothic Medium", Tahoma, sans-serif;
+      font-size: var(--ddd-theme-body-font-size, 20px);
+      font-weight: var(--ddd-font-weight-regular, 400);
+      letter-spacing: normal;
     }
-    #follow-the-white-rabbit li {
-      font-size: var(--ddd-font-size-xs);
-      list-style: none;
+    body {
+      padding: 0 var(--ddd-spacing-8, 32px);
     }
-    #follow-the-white-rabbit li strong,
-    #follow-the-white-rabbit li a {
-      padding: var(--ddd-spacing-2) var(--ddd-spacing-4);
-      color: black;
-      display: block;
+    h1 {
+      font-size: var(--ddd-theme-h1-font-size, 40px);
+    }
+
+    h1 {
+      margin: var(--ddd-spacing-12, 48px) 0 var(--ddd-spacing-8, 32px);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Roboto", "Franklin Gothic Medium", Tahoma, sans-serif;
+      font-weight: var(--ddd-font-weight-bold, 700);
+      line-height: auto;
+      letter-spacing: auto;
+    }
+    h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p {
+      margin-top: 0;
+    }
+    p {
+      margin: var(--ddd-spacing-6, 24px) 0;
+    }
+    code {
+      transition: all 0.3s ease 0s;
+      display: inline-block;
+      padding: 2px var(--ddd-spacing-1, 4px);
+      margin: 0 var(--ddd-spacing-1, 4px);
+      font-size: calc(var(--ddd-theme-body-font-size, 20px) - var(--ddd-spacing-1, 4px));
+      background-color: var(--ddd-theme-code-background-color, light-dark(var(--ddd-theme-default-limestoneLight, #e4e5e7), black));
+      color: var(--ddd-theme-code-color, light-dark(black, var(--ddd-theme-default-limestoneLight, #e4e5e7)));
+      line-height: 1;
+      border-radius: var(--ddd-radius-xs, 4px);
+      border: var(--ddd-border-md, 3px solid var(--ddd-theme-default-limestoneLight, #e4e5e7));
+      border-style: groove;
+      border-color: light-dark(var(--ddd-theme-default-limestoneMaxLight, #f2f2f4), black);
+      font-family: monospace;
+      letter-spacing: var(--ddd-ls-16-lg, 0.24px);
+      pointer-events: auto;
+      user-select: all;
+    }
+    code:hover {
       font-weight: bold;
     }
-    #follow-the-white-rabbit li:focus-within a,
-    #follow-the-white-rabbit li:hover a {
-      background-color: black;
-      color: yellow;
+
+    header,
+    main,
+    footer,
+    .container {
+      padding: 0 16px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .container {
+      min-height: 500px;
     }
   </style>
-  <details id="follow-the-white-rabbit" open>
-    <summary>How to Develop</summary>
-    <div class="content">
-      <p>
-      
-        <strong>Checkout project on github:</strong> <a href="https://github.com/haxtheweb/create-playground" target="_blank" rel="nofollow">btopro/create-playground</a>
-        
-      </p>
-      <p>
-        You can edit the current page by modifying <code>index.html</code><br />
-        To edit your <strong>create-playground</strong> tag, modify <code>src/create-playground.js</code>.
-        This file contains all the HTML, CSS and JavaScript used to render your elements above!
-      </p>
-      <p>
-        Web components are easy to follow once you get used to their pattern.
-        Below are links to help on your journey. Good luck, we need you!
-      </p>
-      <ul>
-        <li><a href="https://haxtheweb.org/documentation/ddd" target="_blank">🧑‍🎨 Learn DDD HAX Design system</a></li>
-        <li><a href="https://lit.dev/playground/" target="_blank" rel="nofollow">🔥 Learn Lit</a></li>
-        <li><a href="https://hax.psu.edu" target="_blank">🧙 HAX The Web @ Penn State</a></li>
-      </ul>
-      <h2>Join and Share HAX</h2>
-      <ul>
-        <li><a href="https://github.com/haxtheweb/issues/issues" target="_blank" rel="nofollow">🔮 Ideas to HAX Harder, Better, Faster, Stronger</a></li>
-        <li><a href="https://bit.ly/hax-the-linkedin" target="_blank" rel="nofollow">👔 Share on LinkedIn</a></li>
-        <li><a href="https://bit.ly/hax-the-x" target="_blank" rel="nofollow">🧵 Tweet on X</a></li>
-        <li><a href="https://bit.ly/hax-discord" target="_blank" rel="nofollow">💬 Join Community</a></li>
-      </ul>
-      <h2>Learn the languages and tools</h2>
-      <ul>
-        <li><a href="https://w3schools.com" target="_blank" rel="nofollow">🌐 Learn HTML</a></li>
-        <li><a href="https://web.dev/learn/css/" target="_blank" rel="nofollow">🎨 Learn CSS</a></li>
-        <li><a href="http://Javascript.info" target="_blank" rel="nofollow">💻 Learn JavaScript (JS)</a></li>
-        <li><a href="https://gitimmersion.com" target="_blank" rel="nofollow">🦺 Learn Git / Github</a></li>
-        <li><a href="https://nodesource.com/blog/an-absolute-beginners-guide-to-using-npm/" target="_blank" rel="nofollow">📦 Learn NPM</a></li>
-        <li><a href="http://learnux.io" target="_blank" rel="nofollow">📐 Learn UX / UI development</a></li>
-      </ul>
-      <h2>Find purpose and inspiration</h2>
-      <ul>
-        <li><a href="https://www.youtube.com/watch?v=eC7xzavzEKY" target="_blank" rel="nofollow">🐟 This is Water - David Foster Wallace</a></li>
-        <li><a href="https://www.youtube.com/watch?v=kYfNvmF0Bqw" target="_blank" rel="nofollow">🏗️ Secrets of Life - Steve Jobs</a></li>
-        <li><strong>💡 <em>Never. Stop. Innovating.</em></strong></li>
-      </ul>
-    </div>
-  </details>
+</head>
+
+<body vocab="http://schema.org/" prefix="oer:http://oerschema.org cc:http://creativecommons.org/ns dc:http://purl.org/dc/terms/">
+  <header>
+    <h1>> hax</h1>
+  </header>
+  <main>
+    <p>
+      Build websites and web components doesn't have to be so hard. <code>@haxtheweb/create</code> provides a simple way to create 
+      new HAXsites and HAX capable web components.
+    </p>
+    <p>If you want to create your own CMS, you could install <code>@haxtheweb/h-a-x</code> and invest a decade in R&D. Orrr...
+    <code>hax site my-site --y --no-i</code> to create a website quickly. </p>
+  </main>
+  <div class="container">
+    <create-playground></create-playground>
+  </div>
+  <footer>
+    HAXTheWeb | The Pennsylvania State University © 2024
+  </footer>
+  <script type="module" src="./create-playground.js"></script>
 </body>
 </html>

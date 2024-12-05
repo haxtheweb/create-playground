@@ -23,6 +23,7 @@ export class CreatePlayground extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.title = "";
+    this.name = prompt("Element name") || 'my-element';
     this.t = this.t || {};
     this.t = {
       ...this.t,
@@ -42,6 +43,7 @@ export class CreatePlayground extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       title: { type: String },
+      name: { type: String },
     };
   }
 
@@ -67,18 +69,62 @@ export class CreatePlayground extends DDDSuper(I18NMixin(LitElement)) {
 
   // Lit render the HTML
   render() {
-    return html`
-    <web-container></web-container>
-    `;
+    return html`<web-container
+    @web-container-dependencies-installing="${this.installStart}"
+    @web-container-dependencies-installed="${this.installComplete}"
+    @web-container-server-ready="${this.serverReady}"
+    ></web-container>`;
+  }
+  async serverReady(e) {
+    let wc = this.shadowRoot.querySelector('web-container');
+    wc.fname = `${this.name}/${this.name}.js`;
+    let file = await wc.readFile(`${this.name}/${this.name}.js`);
+    wc.setCodeEditor(file);
+    // add references for all the files we care about
+    wc.filesShown = [
+      {
+        file: `${this.name}/${this.name}.js`,
+        label: `${this.name}.js`
+      },
+      {
+        file: `${this.name}/index.html`,
+        label: `index.html`
+      },
+      {
+        file: `${this.name}/package.json`,
+        label: `package.json`
+      },
+    ];
+  }
+  installStart(e) {
+   // alert("NPM install starting..");
+  }
+  installComplete(e) {
+    //alert("NPM install complete!");
+  }
+  firstUpdated(changedProperties) {
+    super.firstUpdated(changedProperties);
+    // sets file initially but we need to do more after since this command creates other files
+    this.shadowRoot.querySelector('web-container').files = {
+      "package.json": {
+        file: {
+          contents: `
+            {
+              "name": "create-playground",
+              "type": "module",
+              "dependencies": {
+                "@haxtheweb/create": "latest"
+              },
+              "scripts": {
+                "start": "hax webcomponent ${this.name} --y --no-i",
+                "hax": "hax"
+              }
+            }`
+        }
+      }
+    }
   }
 
-  /**
-   * haxProperties integration via file reference
-   */
-  static get haxProperties() {
-    return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
-      .href;
-  }
 }
 
 globalThis.customElements.define(CreatePlayground.tag, CreatePlayground);

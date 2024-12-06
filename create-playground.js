@@ -6,7 +6,6 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 import "@haxtheweb/web-container/web-container.js";
-import "@haxtheweb/rpg-character/rpg-character.js";
 
 /**
  * `create-playground`
@@ -23,7 +22,7 @@ export class CreatePlayground extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.title = "";
-    this.name = prompt("Element name") || 'my-element';
+    this.name = 'my-element';
     this.t = this.t || {};
     this.t = {
       ...this.t,
@@ -63,6 +62,15 @@ export class CreatePlayground extends DDDSuper(I18NMixin(LitElement)) {
       }
       h3 span {
         font-size: var(--create-playground-label-font-size, var(--ddd-font-size-s));
+      }
+      web-container {
+        background-color: var(--ddd-accent-1);
+        border: var(--ddd-border-xs);
+        border-radius: var(--ddd-radius-xs);
+        box-shadow: var(--ddd-boxShadow-sm);
+        min-height:400px;
+        width: 100%;
+        display: block;
       }
     `];
   }

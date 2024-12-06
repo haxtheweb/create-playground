@@ -50,10 +50,10 @@
   <style>
     :root,
     html,
-    body {
+    html body {
       padding: 0;
       margin: 0;
-      font-family: "Roboto", "Franklin Gothic Medium", Tahoma, sans-serif;
+      font-family: var(--ddd-font-secondary), "Roboto Slab", serif;
       font-size: var(--ddd-theme-body-font-size, 20px);
       font-weight: var(--ddd-font-weight-regular, 400);
       letter-spacing: normal;
@@ -65,11 +65,12 @@
       font-size: var(--ddd-theme-h1-font-size, 40px);
     }
 
-    h1 {
-      margin: var(--ddd-spacing-12, 48px) 0 var(--ddd-spacing-8, 32px);
+    .traveler {
+      margin-bottom: -32px;
+      margin-left: 16px;
     }
     h1, h2, h3, h4, h5, h6 {
-      font-family: "Roboto", "Franklin Gothic Medium", Tahoma, sans-serif;
+      font-family: var(--ddd-font-primary), "Roboto", "Franklin Gothic Medium", Tahoma, sans-serif;
       font-weight: var(--ddd-font-weight-bold, 700);
       line-height: auto;
       letter-spacing: auto;
@@ -103,8 +104,7 @@
     }
 
     header,
-    main,
-    footer {
+    main {
       padding: 0 16px;
       max-width: 960px;
       margin: 0 auto;
@@ -116,27 +116,97 @@
       margin: 0 auto;
       min-height: 500px;
     }
+    footer {
+      vertical-align: middle;
+      margin: 0;
+      padding: 16px;
+      text-align: center;
+      font-family: var(--ddd-font-navigation), "Roboto Condensed", sans-serif;
+      background-color: var(--ddd-primary-2);
+      color: var(--ddd-accent-1);
+      border: none;
+    }
+    rpg-character {
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+    }
+    .psu-logo {
+      display:block;
+      height: 42px;
+      margin: var(--ddd-spacing-2) auto;
+      padding: var(--ddd-spacing-2);
+    }
+    .attention {
+      border: var(--ddd-border-md, 2px solid black);
+      border-color: var(--ddd-primary-1);
+      display: inline-block;
+      padding: var(--ddd-spacing-2);
+    }
+    header h1 {
+      margin: 0;
+      font-family:monospace;
+    }
+    header h1 strong {
+      font-weight: var(--ddd-font-black);
+      font-family: var(--ddd-font-navigation);
+      margin-right: var(--ddd-spacing-1);
+    }
+    blink {
+      animation: blink 1s infinite alternate;
+      color: var(--ddd-primary-15, orange);
+      font-size: var(--ddd-font-size-s);
+      vertical-align: middle;
+      margin-left: var(--ddd-spacing-2);
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      54% { opacity: 1; }
+      55% { opacity: 0; }
+      100% { opacity: 0; }
+    }
   </style>
 </head>
 
 <body vocab="http://schema.org/" prefix="oer:http://oerschema.org cc:http://creativecommons.org/ns dc:http://purl.org/dc/terms/">
   <header>
-    <h1>> hax</h1>
+    <img class="traveler" src="./assets/icon-96x96.png" alt="HAX Traveler logo" loading="eager"/>
+    <div class="attention">
+      <h1><strong>></strong>hax<blink>&#9608;</blink></h1>
+    </div>
   </header>
   <main>
     <p>
-      Build websites and web components doesn't have to be so hard. <code>@haxtheweb/create</code> provides a simple way to create 
-      new HAXsites and HAX capable web components.
+      Build websites doesn't have to be hard. <code>@haxtheweb/create</code> provides a simple way to create 
+      new websites and <strong>web components</strong>.
     </p>
-    <p>If you want to create your own CMS, you could install <code>@haxtheweb/h-a-x</code> and invest a decade in R&D. Orrr...
-    <code>hax site my-site --y --no-i</code> to create a website quickly. </p>
+    <p>If you want to create your own CMS, you could install <code>@haxtheweb/h-a-x</code> and get just the block-editor. Or..
+    <code>hax site my-site --y --no-i</code> to create a website with it already integrated fully! </p>
   </main>
   <div class="container">
     <create-playground></create-playground>
   </div>
   <footer>
-    HAXTheWeb | The Pennsylvania State University © 2024
+    <div>
+      <rpg-character height="48" width="32"></rpg-character>
+      <rpg-character height="48" width="32"></rpg-character>
+      <rpg-character height="48" width="32"></rpg-character>
+      <rpg-character height="48" width="32"></rpg-character>
+      <rpg-character height="48" width="32"></rpg-character>
+      <rpg-character height="48" width="32"></rpg-character>
+      <rpg-character height="48" width="32"></rpg-character>
+      <rpg-character height="48" width="32"></rpg-character>
+      <rpg-character height="48" width="32"></rpg-character>
+      <rpg-character height="48" width="32"></rpg-character>
+      <rpg-character height="48" width="32" walking></rpg-character>
+    </div>
+    <div>HAXTheWeb <strong>|</strong> The Pennsylvania State University © 2024</div>
+    <img class="psu-logo" src="./assets/images/Penn-State-Mark.png" alt="Pennsylvania State University logo" loading="lazy" fetchpriority="low" />
   </footer>
-  <script type="module" src="./create-playground.js"></script>
+  <script type="module">
+    import "./create-playground.js";
+    import "@haxtheweb/rpg-character/rpg-character.js";
+  </script>
 </body>
 </html>

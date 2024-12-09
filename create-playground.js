@@ -74,6 +74,7 @@ export class CreatePlayground extends DDDSuper(LitElement) {
   }
   async serverReady(e) {
     let wc = this.shadowRoot.querySelector('web-container');
+    // right now we don't do anything when the site is ready
     if (this.type === "site") {
 
     }
@@ -90,6 +91,10 @@ export class CreatePlayground extends DDDSuper(LitElement) {
         {
           file: `${this.name}/index.html`,
           label: `index.html`
+        },
+        {
+          file: `${this.name}/lib/${this.name}.haxProperties.json`,
+          label: `${this.name}.haxProperties.json`
         },
         {
           file: `${this.name}/package.json`,

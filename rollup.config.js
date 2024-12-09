@@ -30,6 +30,10 @@ export default {
     html({
       minify: true,
     }),
+    html({
+      input: 'site.html',
+      minify: true,
+    }),
     /** Resolve bare module imports */
     nodeResolve(),
     /** Minify JS, compile JS to a lower language target */

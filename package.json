@@ -29,12 +29,12 @@
     },
     "dependencies": {
       "lit": "^3.2.1",
-      "@haxtheweb/d-d-d": "^9.0.23",
-      "@haxtheweb/i18n-manager": "^9.0.22",
+      "@haxtheweb/d-d-d": "^9.0.24",
       "@haxtheweb/rpg-character": "^9.0.22",
-      "@haxtheweb/web-container": "^9.0.23",
-      "@haxtheweb/code-editor": "^9.0.22",
-      "patch-package": "8.0.0"
+      "@haxtheweb/web-container": "^9.0.24",
+      "@haxtheweb/code-editor": "^9.0.24",
+      "patch-package": "8.0.0",
+      "rollup-plugin-copy": "3.5.0"
     },
     "devDependencies": {
       "@babel/preset-env": "^7.16.4",

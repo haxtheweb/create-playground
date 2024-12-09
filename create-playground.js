@@ -4,7 +4,6 @@
  */
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
-import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 import "@haxtheweb/web-container/web-container.js";
 
 /**
@@ -13,7 +12,7 @@ import "@haxtheweb/web-container/web-container.js";
  * @demo index.html
  * @element create-playground
  */
-export class CreatePlayground extends DDDSuper(I18NMixin(LitElement)) {
+export class CreatePlayground extends DDDSuper(LitElement) {
 
   static get tag() {
     return "create-playground";
@@ -21,27 +20,16 @@ export class CreatePlayground extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
     this.name = 'my-element';
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
-    this.registerLocalization({
-      context: this,
-      localesPath:
-        new URL("./locales/create-playground.ar.json", import.meta.url).href +
-        "/../",
-      locales: ["ar", "es", "hi", "zh"],
-    });
+    this.type = 'webcomponent';
   }
 
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
+      // this is so we can have different tutorials that run
+      type: { type: String, reflect: true },
       name: { type: String },
     };
   }
@@ -78,6 +66,7 @@ export class CreatePlayground extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`<web-container
+    ?hide-editor="${this.type === "site"}"
     @web-container-dependencies-installing="${this.installStart}"
     @web-container-dependencies-installed="${this.installComplete}"
     @web-container-server-ready="${this.serverReady}"
@@ -85,30 +74,42 @@ export class CreatePlayground extends DDDSuper(I18NMixin(LitElement)) {
   }
   async serverReady(e) {
     let wc = this.shadowRoot.querySelector('web-container');
-    wc.fname = `${this.name}/${this.name}.js`;
-    let file = await wc.readFile(`${this.name}/${this.name}.js`);
-    wc.setCodeEditor(file);
-    // add references for all the files we care about
-    wc.filesShown = [
-      {
-        file: `${this.name}/${this.name}.js`,
-        label: `${this.name}.js`
-      },
-      {
-        file: `${this.name}/index.html`,
-        label: `index.html`
-      },
-      {
-        file: `${this.name}/package.json`,
-        label: `package.json`
-      },
-    ];
+    if (this.type === "site") {
+
+    }
+    else {
+      wc.fname = `${this.name}/${this.name}.js`;
+      let file = await wc.readFile(`${this.name}/${this.name}.js`);
+      wc.setCodeEditor(file);
+      // add references for all the files we care about
+      wc.filesShown = [
+        {
+          file: `${this.name}/${this.name}.js`,
+          label: `${this.name}.js`
+        },
+        {
+          file: `${this.name}/index.html`,
+          label: `index.html`
+        },
+        {
+          file: `${this.name}/package.json`,
+          label: `package.json`
+        },
+      ];
+    }
   }
   installStart(e) {
    // alert("NPM install starting..");
   }
   installComplete(e) {
     //alert("NPM install complete!");
+  }
+  // start command type / name shift
+  getStartCommand() {
+    if (this.type === 'site') {
+      return `hax site ${this.name} --y --theme='clean-one'`;
+    }
+    return `hax webcomponent ${this.name} --y --no-i`;
   }
   firstUpdated(changedProperties) {
     super.firstUpdated(changedProperties);
@@ -124,7 +125,7 @@ export class CreatePlayground extends DDDSuper(I18NMixin(LitElement)) {
                 "@haxtheweb/create": "latest"
               },
               "scripts": {
-                "start": "hax webcomponent ${this.name} --y --no-i",
+                "start": "${this.getStartCommand()}",
                 "hax": "hax"
               }
             }`

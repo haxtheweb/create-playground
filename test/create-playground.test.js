@@ -6,7 +6,7 @@ describe("CreatePlayground test", () => {
   beforeEach(async () => {
     element = await fixture(html`
       <create-playground
-        title="title"
+        name="my-element"
       ></create-playground>
     `);
   });

@@ -20,8 +20,18 @@ export class CreatePlayground extends DDDSuper(LitElement) {
 
   constructor() {
     super();
-    this.name = 'my-element';
+    const urlParams = new URLSearchParams(globalThis.location.search);
+    const name = urlParams.get('name');
+    this.name = name || 'my-element';
     this.type = 'webcomponent';
+    this.commands = [];
+    /*this.commands = [
+      "npm install".split(' '),
+      `hax webcomponent ${this.name} --no-extras --auto --quiet --y`.split(' '),
+      `cd ${this.name}`.split(' '),
+      `npm install`.split(' '),
+      `npm start`.split(' '),
+    ];*/
   }
 
   // Lit reactive properties
@@ -31,6 +41,7 @@ export class CreatePlayground extends DDDSuper(LitElement) {
       // this is so we can have different tutorials that run
       type: { type: String, reflect: true },
       name: { type: String },
+      commands: { type: Array },
     };
   }
 
@@ -70,6 +81,7 @@ export class CreatePlayground extends DDDSuper(LitElement) {
     @web-container-dependencies-installing="${this.installStart}"
     @web-container-dependencies-installed="${this.installComplete}"
     @web-container-server-ready="${this.serverReady}"
+    .commands="${this.commands}"
     ></web-container>`;
   }
   async serverReady(e) {

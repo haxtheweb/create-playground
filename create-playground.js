@@ -24,7 +24,7 @@ export class CreatePlayground extends DDDSuper(LitElement) {
     const name = urlParams.get('name');
     this.name = name || 'my-element';
     this.type = 'webcomponent';
-    this.commands = [];
+    //this.commands = [];
     /*this.commands = [
       "npm install".split(' '),
       `hax webcomponent ${this.name} --no-extras --auto --quiet --y`.split(' '),
@@ -41,7 +41,7 @@ export class CreatePlayground extends DDDSuper(LitElement) {
       // this is so we can have different tutorials that run
       type: { type: String, reflect: true },
       name: { type: String },
-      commands: { type: Array },
+      //commands: { type: Array },
     };
   }
 
@@ -81,7 +81,6 @@ export class CreatePlayground extends DDDSuper(LitElement) {
     @web-container-dependencies-installing="${this.installStart}"
     @web-container-dependencies-installed="${this.installComplete}"
     @web-container-server-ready="${this.serverReady}"
-    .commands="${this.commands}"
     ></web-container>`;
   }
   async serverReady(e) {
@@ -126,7 +125,7 @@ export class CreatePlayground extends DDDSuper(LitElement) {
     if (this.type === 'site') {
       return `hax site ${this.name} --y --theme='clean-one'`;
     }
-    return `hax webcomponent ${this.name} --y --no-i`;
+    return `hax webcomponent ${this.name} --y`;
   }
   firstUpdated(changedProperties) {
     super.firstUpdated(changedProperties);

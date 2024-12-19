@@ -29,9 +29,9 @@
     },
     "dependencies": {
       "lit": "^3.2.1",
-      "@haxtheweb/d-d-d": "^9.0.26",
-      "@haxtheweb/rpg-character": "^9.0.22",
-      "@haxtheweb/web-container": "^9.0.26",
+      "@haxtheweb/d-d-d": "^9.0.27",
+      "@haxtheweb/rpg-character": "^9.0.27",
+      "@haxtheweb/web-container": "^9.0.27",
       "@haxtheweb/code-editor": "^9.0.26",
       "patch-package": "8.0.0",
       "rollup-plugin-copy": "3.5.0"

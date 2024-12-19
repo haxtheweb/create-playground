@@ -64,11 +64,6 @@
     h1 {
       font-size: var(--ddd-theme-h1-font-size, 40px);
     }
-
-    .traveler {
-      margin-bottom: -32px;
-      margin-left: 16px;
-    }
     h1, h2, h3, h4, h5, h6 {
       font-family: var(--ddd-font-primary), "Roboto", "Franklin Gothic Medium", Tahoma, sans-serif;
       font-weight: var(--ddd-font-weight-bold, 700);
@@ -181,12 +176,93 @@
       55% { opacity: 0; }
       100% { opacity: 0; }
     }
+    * {
+      box-sizing: border-box
+    }
+
+    :root {
+        color: #000;
+        background: white
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #top {
+        width: 100%;
+        font-family: var(--ddd-font-navigation), "Roboto Condensed", sans-serif;
+        background-color: var(--ddd-primary-2);
+        color: var(--ddd-accent-1);
+      }
+
+    .traveler {
+      height: 32px;
+    }
+    footer .traveler {
+      margin-right: -4px;
+      margin-bottom: -10px;
+    }
+    #top .traveler {
+      float: left;
+    }
+    #top rpg-character {
+      float: right;
+    }
+
+    #top ul {
+        margin: 0 auto 16px;
+        display: table;
+        padding: 0;
+        font-size: var(--ddd-font-size-3xs, 20px);
+        font-weight: var(--ddd-font-weight-bold, 700);
+    }
+
+    #top ul li {
+        display: inline-flex;
+        list-style: none;
+        padding: 0;
+        margin: 0 8px
+    }
+
+    #top ul li {
+      color: var(--ddd-accent-1);
+      background-color: var(--ddd-theme-default-coalyGray, #333333);
+    }
+
+    #top ul li a {
+        color: #fff;
+        padding: 4px 8px;
+        text-decoration: none;
+    }
+
+    #top a:hover,#top a:focus {
+        outline: var(--ddd-primary-15, orange) 2px solid;
+        outline-offset: -2px;
+        background-color: #000;
+    }
+
   </style>
 </head>
 
 <body vocab="http://schema.org/" prefix="oer:http://oerschema.org cc:http://creativecommons.org/ns dc:http://purl.org/dc/terms/">
-  <header>
+  <div id="top">
     <img class="traveler" src="./assets/icon-96x96.png" alt="HAX Traveler logo" loading="eager"/>
+    <rpg-character height="32" width="24"></rpg-character>
+    <ul>
+      <li><a href="https://playground.hax.cloud/">play</a></li>
+      <li><a href="https://hax.cloud/">demo</a></li>
+      <li><a href="https://rpg-me.hax.cloud/">rpg</a></li>
+      <li><a href="https://haxtheweb.org" target="_blank">learn</a></li>
+      <li><a href="https://hax.cloud/docplayer.html" target="_blank">elements</a></li>
+      <li><a href="https://github.com/haxtheweb/create" target="_blank">cli</a></li>
+      <li><a href="https://github.com/haxtheweb/haxcms-nodejs" target="_blank">nodejs</a></li>
+      <li><a href="https://github.com/haxtheweb/haxcms-php" target="_blank">php</a></li>
+      <li><a href="https://github.com/haxtheweb/desktop" target="_blank">desktop</a></li>
+    </ul>
+  </div>
+  <header>
     <div class="attention">
       <h1><strong>></strong>hax<blink>&#9608;</blink></h1>
     </div>
@@ -223,12 +299,22 @@
       <rpg-character height="48" width="32"></rpg-character>
       <rpg-character height="48" width="32" walking></rpg-character>
     </div>
-    <div>HAXTheWeb <strong>|</strong> The Pennsylvania State University © 2024</div>
+    <div><img class="traveler" src="./assets/icon-96x96.png" alt="HAX Traveler logo" loading="eager"/>
+      HAXTheWeb <strong>|</strong> The Pennsylvania State University © 2019</div>
     <img class="psu-logo" src="./assets/images/Penn-State-Mark.png" alt="Pennsylvania State University logo" loading="lazy" fetchpriority="low" />
   </footer>
   <script type="module">
     import "./create-playground.js";
     import "@haxtheweb/rpg-character/rpg-character.js";
   </script>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XC5S35Q0F4"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+  
+        gtag('config', 'G-XC5S35Q0F4');
+      </script>
 </body>
 </html>

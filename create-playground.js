@@ -22,8 +22,10 @@ export class CreatePlayground extends DDDSuper(LitElement) {
     super();
     const urlParams = new URLSearchParams(globalThis.location.search);
     const name = urlParams.get('name');
+    const remoteRecipe = urlParams.get('recipe');
     this.name = name || 'my-element';
     this.type = 'webcomponent';
+    this.__remoteRecipe = remoteRecipe;
     //this.commands = [];
     /*this.commands = [
       "npm install".split(' '),
@@ -74,9 +76,17 @@ export class CreatePlayground extends DDDSuper(LitElement) {
     `];
   }
 
+  refreshIframe() {
+    let wc = this.shadowRoot.querySelector('web-container');
+    const iframe = wc.shadowRoot.querySelector('iframe');
+    iframe.src = iframe.src;
+  }
+
   // Lit render the HTML
   render() {
-    return html`<web-container
+    return html`
+    <button @click="${this.refreshIframe}">Reload window</button>
+    <web-container
     ?hide-editor="${this.type === "site"}"
     @web-container-dependencies-installing="${this.installStart}"
     @web-container-dependencies-installed="${this.installComplete}"
@@ -87,7 +97,18 @@ export class CreatePlayground extends DDDSuper(LitElement) {
     let wc = this.shadowRoot.querySelector('web-container');
     // right now we don't do anything when the site is ready
     if (this.type === "site") {
-
+      if (this.__remoteRecipe) {
+        await this.getRecipeURL(this.__remoteRecipe);
+        try {
+          await wc.webcontainerInstance.spawn("npm", ["run", "remote-recipe-inject"]);
+          await new Promise((resolve) => setTimeout(resolve, 5000));
+          setTimeout(() => {
+            this.refreshIframe();
+          }, 1000);
+        } catch (error) {
+            console.error('Error executing play command:', error);
+        }  
+      }
     }
     else {
       wc.fname = `${this.name}/${this.name}.js`;
@@ -114,6 +135,23 @@ export class CreatePlayground extends DDDSuper(LitElement) {
       ];
     }
   }
+  // get the recipe from the URL and inject it into the webcontainer
+  async getRecipeURL(urlToGet) {
+    try {
+      // Fetch content from URL
+      const response = await fetch(urlToGet);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const recipeContent = await response.text();
+      // Write content to file
+      let wc = this.shadowRoot.querySelector('web-container');
+      await wc.writeFile(`/${this.name}/remote-recipe-inject.recipe`, recipeContent);
+    } catch (error) {
+        console.error('Error fetching or writing recipe:', error);
+      throw error;
+    }
+  }
   installStart(e) {
    // alert("NPM install starting..");
   }
@@ -123,7 +161,7 @@ export class CreatePlayground extends DDDSuper(LitElement) {
   // start command type / name shift
   getStartCommand() {
     if (this.type === 'site') {
-      return `hax site ${this.name} --y --theme='clean-one'`;
+      return `hax site ${this.name} --y --theme='polaris-flex-theme'`;
     }
     return `hax webcomponent ${this.name} --y`;
   }
@@ -142,6 +180,7 @@ export class CreatePlayground extends DDDSuper(LitElement) {
               },
               "scripts": {
                 "start": "${this.getStartCommand()}",
+                "remote-recipe-inject": "hax site recipe:play --root ${this.name} --recipe remote-recipe-inject.recipe --y",
                 "hax": "hax"
               }
             }`

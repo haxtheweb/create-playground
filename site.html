@@ -87,6 +87,7 @@
     <p>Use 
     <code>hax site mysite --y</code> to create a website! </p>
     <h2>Here it is running in the browser!</h2>
+    <label for="recipe">Remote load recipe:</label><input id="recipe" placeholder="Link to a recipe via URL 🧑‍🍳" /><button>Load Recipe</button>
   </main>
   <div class="container">
     <create-playground type="site" name="mysite"></create-playground>
@@ -113,14 +114,17 @@
     import "./create-playground.js";
     import "@haxtheweb/rpg-character/rpg-character.js";
   </script>
-      <!-- Google tag (gtag.js) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XC5S35Q0F4"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-  
-        gtag('config', 'G-XC5S35Q0F4');
-      </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XC5S35Q0F4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XC5S35Q0F4');
+    document.querySelector('button').addEventListener('click', (e) => {
+      window.location = window.location.origin + window.location.pathname + "?recipe=" + document.querySelector('#recipe').value;
+    });
+  </script>
 </body>
 </html>

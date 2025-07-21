@@ -1,6 +1,6 @@
 {
     "name": "@haxtheweb/create-playground",
-    "version": "10.0.0",
+    "version": "11.0.0",
     "description": "Webcomponent create-playground following hax / open-wc recommendations",
     "license": "Apache-2.0",
     "author": {
@@ -29,10 +29,10 @@
     },
     "dependencies": {
       "lit": "^3.2.1",
-      "@haxtheweb/d-d-d": "^10.0.0",
-      "@haxtheweb/rpg-character": "^10.0.0",
-      "@haxtheweb/web-container": "^10.0.0",
-      "@haxtheweb/code-editor": "^10.0.0",
+      "@haxtheweb/d-d-d": "^11.0.5",
+      "@haxtheweb/rpg-character": "^11.0.5",
+      "@haxtheweb/web-container": "^11.0.5",
+      "@haxtheweb/code-editor": "^11.0.5",
       "patch-package": "8.0.0",
       "rollup-plugin-copy": "3.5.0"
     },

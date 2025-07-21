@@ -161,7 +161,7 @@ export class CreatePlayground extends DDDSuper(LitElement) {
   // start command type / name shift
   getStartCommand() {
     if (this.type === 'site') {
-      return `hax site ${this.name} --y --theme='polaris-flex-theme'`;
+      return `hax site ${this.name} --y --theme='polaris-flex-theme' HAXCMS_DISABLE_JWT_CHECKS`;
     }
     return `hax webcomponent ${this.name} --y`;
   }

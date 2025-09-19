@@ -24,6 +24,8 @@ export default {
         { src: "node_modules/@xterm/xterm/lib/*", dest: 'public/@xterm/xterm/lib' },
         { src: "node_modules/@xterm/xterm/css/*", dest: 'public/@xterm/xterm/css' },
         { src: "node_modules/@xterm/addon-fit/lib/*", dest: 'public/@xterm/addon-fit/lib' },
+        // themes.json is maintained by ubiquity script from webcomponents/elements/haxcms-elements/lib/themes.json
+        { src: "themes.json", dest: 'public' },
       ]
     }),
     /** Enable using HTML as rollup entrypoint */

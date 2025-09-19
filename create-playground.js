@@ -23,9 +23,11 @@ export class CreatePlayground extends DDDSuper(LitElement) {
     const urlParams = new URLSearchParams(globalThis.location.search);
     const name = urlParams.get('name');
     const remoteRecipe = urlParams.get('recipe');
+    const theme = urlParams.get('theme');
     this.name = name || 'my-element';
     this.type = 'webcomponent';
     this.__remoteRecipe = remoteRecipe;
+    this.__theme = theme || 'polaris-flex-theme';
     //this.commands = [];
     /*this.commands = [
       "npm install".split(' '),
@@ -161,7 +163,7 @@ export class CreatePlayground extends DDDSuper(LitElement) {
   // start command type / name shift
   getStartCommand() {
     if (this.type === 'site') {
-      return `hax site ${this.name} --y --theme='polaris-flex-theme' HAXCMS_DISABLE_JWT_CHECKS`;
+      return `hax site ${this.name} --y --theme='${this.__theme}' HAXCMS_DISABLE_JWT_CHECKS`;
     }
     return `hax webcomponent ${this.name} --y`;
   }
